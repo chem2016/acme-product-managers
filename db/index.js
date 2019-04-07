@@ -12,6 +12,7 @@ const Product = conn.define('product', {
 
 Product.belongsTo(User, {as: "manager"} )
 
+// user.get() shows the user created on the backend 
 const syncAndSeed = () => {
     return conn.sync({force: true})
         .then(()=>{
