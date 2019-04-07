@@ -1,1 +1,3 @@
-# acme-product-managers
+# react-minimal template
+- npm install
+- npm run start:dev
