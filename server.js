@@ -8,7 +8,7 @@ syncAndSeed()
     .then(()=>console.log('sync data for user and products'))
 
 const port = process.env.PORT || 3000;
-
+app.use(express.json())
 app.get('/app.js', (req, res, next)=> res.sendFile(path.join(__dirname, 'dist', 'main.js')));
 
 app.get('/', (req, res, next)=> res.sendFile(path.join(__dirname, 'index.html')));
@@ -26,6 +26,7 @@ app.get('/api/products', (req, res, next)=>{
 })
 
 app.put('/api/products/:id', (req, res, next)=>{
+    console.log('in server.js: ', req.params.id)
     Product.findByPk(req.params.id)
         .then(product=>product.update(req.body))
         .then(product=>res.send(product))
