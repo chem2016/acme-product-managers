@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { fetchProducts } from './store';
-// console.log(managerOpenings({ products})); //returns true if there are products without a managerId
 
 class Home extends Component{
     constructor(props){
@@ -28,7 +27,6 @@ class Home extends Component{
 
 
     render(){
-        // console.log('in render: ', this.props.products)
         if(this.managerOpenings(this.props.products)){
             return (
                 <p>

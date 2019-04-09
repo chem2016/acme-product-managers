@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { fetchProducts, fetchManagers } from './store';
-//  console.log(findManagers({ users, products})); //returns users moe and larry
-
 
 class Managers extends Component {
     constructor(props){
@@ -49,11 +47,9 @@ class Managers extends Component {
     render(){
         const {managers, products} = this.props
         let currentManagers = []
-        console.log('in managers routes', managers, products)
         if(managers.length){
             currentManagers = this.findManagers(managers, products)
         }
-        console.log('after findManager func: ', currentManagers)
         return (
             <div>
                 <ul>

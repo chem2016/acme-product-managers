@@ -12,7 +12,6 @@ class Product extends Component{
 
     setFromProduct = (product) => {
         return {
-            name: product.name ? product.name : '', 
             managerId: product.managerId ? product.managerId : '',
         }
     }
@@ -20,29 +19,16 @@ class Product extends Component{
     handleChange = ({target}) => {
         this.setState({
             [target.name]: target.value,
-            managerName: this.findManagerById(target.value, this.props.managers).name
         }, ()=>console.log(this.state))
     }
 
     onSave = (e) =>{
         e.preventDefault()
-        // const managerId = this.state.managerId !== '--none--' || this.state.managerId !== '' ? this.state.managerId : null
         axios.put(`/api/products/${this.props.product.id}`, {...this.props.product, managerId: this.state.managerId ? this.state.managerId : null})
             .then((resp)=>resp.data)
             .then(product=>this.setState({
                 managerId: product.managerId,
-                managerName: this.findManagerById(product.managerId, this.props.managers).name
             }))
-    }
-
-    findManagerById = (id, managers) => {
-        if(!id){
-            return ''
-        }
-        const selectManager =  managers.filter((manager)=>{
-                                    return manager.id == id
-                                })
-        return selectManager[0]
     }
 
     componentDidUpdate(prevProps){

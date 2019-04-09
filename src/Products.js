@@ -26,9 +26,3 @@ const mapStateToProps = (state) => (
 )
 
 export default connect(mapStateToProps)(Products)
-
-{/* <li key={product.name}>
-                            <Router >
-                                <Route exact path={`/product/${product.id}`} render={()=><Product product={product}/>}/>
-                            </Router>
-                        </li> */}
