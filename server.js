@@ -26,7 +26,7 @@ app.get('/api/products', (req, res, next)=>{
 })
 
 app.put('/api/products/:id', (req, res, next)=>{
-    console.log('in server.js: ', req.params.id)
+    console.log('in server.js: ', req.body)
     Product.findByPk(req.params.id)
         .then(product=>product.update(req.body))
         .then(product=>res.send(product))
