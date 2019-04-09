@@ -60,6 +60,13 @@ const fetchManagers = () => {
     }
 }
 
+const updateProductThunk = () => {
+    return (dispatch) => {
+        return axios.put(`/api/products/${this.props.product.id}`)
+    }
+}
+
+
 const store = createStore(reducer, applyMiddleware(thunk));
 
 export default store;
