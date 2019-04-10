@@ -32,18 +32,18 @@ class Product extends Component{
             }))
     }
 
-    componentDidUpdate(prevProps){
-        if(this.props.manager && !prevProps.manager){
-          this.setState({
-              managerId: this.props.manager.id,
-              managerName: this.props.manager.name
-          });
-        }
-    }
+    // componentDidUpdate(prevProps){
+    //     if(this.props.manager && !prevProps.manager){
+    //       this.setState({
+    //           managerId: this.props.manager.id,
+    //           managerName: this.props.manager.name
+    //       });
+    //     }
+    // }
 
     render(){
         const {managers} = this.props
-        const {managerId, managerName} = this.state
+        const {managerId} = this.state
        
         return(
             <form onSubmit={this.onSave}>
