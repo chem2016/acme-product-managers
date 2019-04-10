@@ -16,6 +16,7 @@ class App extends Component{
         return(
             <Router>
                 <h1>Acme Product Managers</h1>
+                {/* {you can just use component here, only use render if there are new params you want to pass in} */}
                 <Route render={({location})=><Nav location={location}/>}/>
                 <Route exact path='/' render={()=><Home />}/>
                 <Route exact path='/users' render={()=><Managers />}/>

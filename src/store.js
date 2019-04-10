@@ -39,6 +39,16 @@ const reducer = (state=initialState,action) =>{
             return {...state, products: action.products}
         case SET_MANAGERS:
             return {...state, managers: action.managers}
+        case UPDATE_PRODUCT:
+            const newProducts = [...state.products].map(p=>{
+                if(p.id === action.productId){
+                    p.managerId = action.managerId
+                    return p
+                }else{
+                    return p
+                }
+            })
+            return {...state, products: newProducts}
         default:
             return state
     }
@@ -60,9 +70,12 @@ const fetchManagers = () => {
     }
 }
 
-const updateProductThunk = () => {
+const updateProductThunk = (product, managerId) => {
+    managerId = managerId ? managerId : null
     return (dispatch) => {
-        return axios.put(`/api/products/${this.props.product.id}`)
+        return axios.put(`/api/products/${product.id}`, {...product, managerId: managerId})
+            .then(res=>res.data)
+            .then(product=>dispatch(updateProduct(product.id, product.managerId)))
     }
 }
 
@@ -70,4 +83,4 @@ const updateProductThunk = () => {
 const store = createStore(reducer, applyMiddleware(thunk));
 
 export default store;
-export { fetchProducts, fetchManagers }
+export { fetchProducts, fetchManagers, updateProductThunk }

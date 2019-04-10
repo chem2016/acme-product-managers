@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import {updateProductThunk} from './store'
 
 class Product extends Component{
 
@@ -24,7 +25,7 @@ class Product extends Component{
 
     onSave = (e) =>{
         e.preventDefault()
-        axios.put(`/api/products/${this.props.product.id}`, {...this.props.product, managerId: this.state.managerId ? this.state.managerId : null})
+        this.props.updateProduct(this.props.product, this.state.managerId)
             .then((resp)=>resp.data)
             .then(product=>this.setState({
                 managerId: product.managerId,
@@ -72,7 +73,12 @@ const mapStateToProps = (state) =>{
         managers: state.managers,
     }
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateProduct: (product, managerId)=>dispatch(updateProductThunk(product, managerId))
+    }
+}
 
-export default connect(mapStateToProps)(Product)
+export default connect(mapStateToProps, mapDispatchToProps)(Product)
 
   
